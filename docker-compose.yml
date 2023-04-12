@@ -1,0 +1,26 @@
+version: "3"
+services:
+  flask:
+    build: ./TermAssignment
+    image: darhk/funtime:flask
+    container_name: flask
+    ports:
+      - 5000:5000
+    volumes:
+      - .:/usr/src/data:ro
+    networks:
+      - termassignment
+  react:
+    build: ./funtimeui
+    image: darhk/funtime:react
+    container_name: react
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/usr/src/data:ro
+    networks:
+      - termassignment
+networks:
+  termassignment:
+    name: termassignment
+    driver: bridge
